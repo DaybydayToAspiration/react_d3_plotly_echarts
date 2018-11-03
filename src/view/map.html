@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>中国地图</title>
+</head>
+<style>
+</style>
+
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+      <script src="https://cdn.bootcss.com/d3/3.5.15/d3.js"></script>
+    <script>
+        var width = 1000;
+        var height = 1000;
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(0,0)");
+
+        // 投影函数
+        var projection = d3.geoMercator()
+            .center([107, 31])
+            .scale(850)
+            .translate([width / 2, height / 2]);
+
+        // 地理路径生成器
+        var path = d3.geoPath()
+            .projection(projection); // 设定路径生成器的投影函数
+
+
+        var color = d3.schemeCategory20();
+
+
+        //  向服务器请求文件并绘制地图
+        // 所有读取到的信息会被放到root中
+        d3.json("china.geojson", function (error, root) {
+
+            if (error)
+                return console.error(error);
+            console.log(root.features);
+
+            svg.selectAll("path") // 每一个<path>代表一个省
+                .data(root.features)
+                .enter()
+                .append("path")
+                .attr("stroke", "#000")
+                .attr("stroke-width", 1)
+                .attr("fill", function (d, i) {
+                    return color[i];
+                })
+                .attr("d", function (d) {
+                    console.log(d);
+                    return path(d);
+                })
+               // .attr("d", path) // 使用地理路径生成器
+                .on("mouseover", function (d, i) {
+                    d3.select(this)
+                        .attr("fill", "yellow");
+                })
+                .on("mouseout", function (d, i) {
+                    d3.select(this)
+                        .attr("fill", color[i]);
+                });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
