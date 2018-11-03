@@ -5,4 +5,5 @@ if you wanna run
 git clone it 
 
 npm install
+
 npm run start
