@@ -57,10 +57,8 @@ class Map extends Component {
             .style("opacity", 0.0);
 
         if(document.getElementById("svg_svg")) {
-            console.log("没有SVG啊啊啊啊");
             d3.selectAll(".point2").remove();
             let svg = d3.select("#svg_svg");
-            console.log(svg);
             let points = svg.selectAll(".circle")
                 .data(dataset)		//绑定数组
                 .enter()

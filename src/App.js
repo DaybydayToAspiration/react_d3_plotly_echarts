@@ -81,37 +81,6 @@ class App extends Component {
             LineName = this.getLineLevel(data1,LineName);
             console.log(LineName);
             pieData=this.getPieData(LineName[0]);
-            // pieData["level"] = pieData["level"].map((item,index)=> {
-            //     let level ;
-            //     switch (index){
-            //         case 0 : level = 'I';break;
-            //         case 1 : level = 'II';break;
-            //         case 2 : level = 'III';break;
-            //         case 3 : level = 'IV';break;
-            //         case 4 : level = 'V';break;
-            //         default: break;
-            //     }
-            //     return {value:item,name:level}
-            // });
-            console.log(123);
-            console.log(pieData);
-            // data1.forEach((item,index) => {
-            //    if(item['name'] ===)
-            // });
-            // filterData11.forEach((item,index)=>{
-            //     let tmpFilter = this.getTmpFilter(item['detail']);
-            //     let PHData = this.getPHData(tmpFilter,item["name"]);
-            // });
-            // filterData11.forEach((item,index)=>{
-            //     let tmpFilter = this.getTmpFilter(item['detail']);
-            //     Oseries.push(this.getPHData(tmpFilter,item["name"],"sta_an_v"))
-            // });
-            // filterData11.forEach((item,index)=>{
-            //     let tmpFilter = this.getTmpFilter(item['detail']);
-            //     Oseries.push(this.getPHData(tmpFilter,item["name"],"level"))
-            // })
-            // let tmpFilter = this.getTmpFilter(data1[0]['detail']);
-            // PHseries.push(this.getPHData(tmpFilter,"重庆朱沱"));
             mulLineData = this.getMulLine(this.getFilterData(data1,'长江'),'长江');
         })().then(()=>{
             // console.log(this);
@@ -320,8 +289,6 @@ class App extends Component {
                  }
              });
          }
-         console.log("data来了");
-         console.log(this.state.pieData);
      }
      getMulLine(filterData11,msg){
          let PHseries = [];
